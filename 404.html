@@ -72,17 +72,11 @@
 			particleGeometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
 			const particleMaterial = new THREE.PointsMaterial( { size: 5, sizeAttenuation: true, alphaTest: 0.8, transparent: true } );
 			particleMaterial.color.setRGB( 0.78, 0.78, 0.6);
-			const connectionsMaterial = new THREE.LineBasicMaterial( { color: 0xFFFFFF });
 			const particles = new THREE.Points( particleGeometry, particleMaterial );
-
-			const connectionsGeometry = new THREE.BufferGeometry();
-			connectionsGeometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices.filter(function(element, index){return (index < (iter / 12));} ), 3 ))
-			const connections = new THREE.Line( connectionsGeometry, connectionsMaterial );
 			
 			scene.add( internet_sphere );
 			scene.add( line );
 			scene.add( particles );
-			//scene.add( connections );
 
 			camera.position.z = 3;
 

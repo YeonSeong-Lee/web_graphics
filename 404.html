@@ -43,30 +43,11 @@
 			window.addEventListener('deviceorientation', handleOrientation);
 
 			document.addEventListener("click", gyroSensorPermission);
-			
 			document.addEventListener("mousemove", (e) => { 
-			mouseX = e.clientX - window.innerWidth / 2;
+				mouseX = e.clientX - window.innerWidth / 2;
 				mouseY = e.clientY - window.innerHeight / 2;
 			});
 			
-
-			function handleOrientation(e) {
-				gyroX += e.beta * 0.05;
-				gyroY += e.gamma * 0.05;
-			}
-
-
-			function gyroSensorPermission() {
-				if (typeof DeviceMotionEvent.requestPermission === 'function') {
-					// Handle iOS 13+ devices.
-					DeviceMotionEvent.requestPermission()
-					.then((state) => {
-						if (state !== 'granted') {
-						console.error('Request to access the orientation was rejected');
-						}
-					})
-			}}
-
 			const scene = new THREE.Scene();
 			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
@@ -103,7 +84,10 @@
 			scene.add( particles );
 
 			camera.position.z = 3;
+			
+			animate();
 
+			//** functions **//
 			function animate() {
 				requestAnimationFrame( animate );
 				camera.position.x += (mouseX - camera.position.x) * 0.05;
@@ -118,7 +102,22 @@
 
 				renderer.render( scene, camera );
 			};
-			animate();
+
+			function handleOrientation(e) {
+				gyroX += e.beta * 0.05;
+				gyroY += e.gamma * 0.05;
+			}
+
+			function gyroSensorPermission() {
+				if (typeof DeviceMotionEvent.requestPermission === 'function') {
+					// Handle iOS 13+ devices.
+					DeviceMotionEvent.requestPermission()
+					.then((state) => {
+						if (state !== 'granted') {
+						console.error('Request to access the orientation was rejected');
+						}
+					})
+			}}
 		</script>
 	</body>
 </html>

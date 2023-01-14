@@ -42,7 +42,7 @@
 				mouseY = e.clientY - window.innerHeight / 2;
 			});
 			
-			document.addEventListener("gyro", (e) => { 
+			document.addEventListener("deviceorientation", (e) => { 
 				console.log("gyro event");
 				console.log(e);
 				mouseX += e.beta * e.acceleration;

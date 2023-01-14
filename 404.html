@@ -92,8 +92,8 @@
 				requestAnimationFrame( animate );
 				camera.position.x += (mouseX - camera.position.x) * 0.05;
 				camera.position.y += (mouseY - camera.position.y) * 0.05;
-				camera.position.x += (gyroX - camera.position.x) * 0.05;
-				camera.position.y += (gyroY - camera.position.y) * 0.05;
+				camera.position.x += (gyroX / 180);
+				camera.position.y += (gyroY / 180);
 
 				camera.lookAt( scene.position );
 
@@ -104,8 +104,8 @@
 			};
 
 			function handleOrientation(e) {
-				gyroX = e.beta * 0.05;
-				gyroY = e.gamma * 0.05;
+				gyroX = e.beta;
+				gyroY = e.gamma;
 			}
 
 			function gyroSensorPermission() {

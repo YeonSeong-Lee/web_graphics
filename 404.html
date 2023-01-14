@@ -43,6 +43,8 @@
 			});
 			
 			document.addEventListener("gyro", (e) => { 
+				console.log("gyro event");
+				console.log(e);
 				mouseX += e.beta * e.acceleration;
 				mouseY += e.gamma * e.acceleration.y;
 			});

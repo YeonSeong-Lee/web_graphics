@@ -44,7 +44,9 @@
 
 			document.addEventListener("click", gyroSensorPermission, { once : true });
 			document.addEventListener("mousemove", (e) => {
-
+				const isMobile = /Mobi/i.test(window.navigator.userAgent);
+				if (isMobile)
+					return ;
 				mouseX = e.clientX - window.innerWidth / 2;
 				mouseY = e.clientY - window.innerHeight / 2;
 			});

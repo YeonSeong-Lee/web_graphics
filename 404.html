@@ -37,11 +37,11 @@
 			
             let mouseX = 0;
             let mouseY = 0;
-			const mouse = document.querySelector(".mouse");
 			document.addEventListener("mousemove", (e) => { 
 			mouseX = e.clientX - window.innerWidth / 2;
 			mouseY = e.clientY - window.innerHeight / 2;
 			});
+
 			
 			const scene = new THREE.Scene();
 			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );

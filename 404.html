@@ -104,8 +104,8 @@
 			};
 
 			function handleOrientation(e) {
-				gyroX += e.beta * 0.05;
-				gyroY += e.gamma * 0.05;
+				gyroX = e.beta * 0.05;
+				gyroY = e.gamma * 0.05;
 			}
 
 			function gyroSensorPermission() {

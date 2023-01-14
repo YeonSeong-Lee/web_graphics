@@ -37,18 +37,36 @@
 			
             let mouseX = 0;
             let mouseY = 0;
+			let gyroX = 0;
+			let gyroY = 0;
+			
+			window.addEventListener('deviceorientation', handleOrientation);
+
+			document.addEventListener("click", gyroSensorPermission);
+			
 			document.addEventListener("mousemove", (e) => { 
-				mouseX = e.clientX - window.innerWidth / 2;
+			mouseX = e.clientX - window.innerWidth / 2;
 				mouseY = e.clientY - window.innerHeight / 2;
 			});
 			
-			document.addEventListener("deviceorientation", (e) => { 
-				console.log("gyro event");
-				console.log(e);
-				mouseX += e.beta * e.acceleration;
-				mouseY += e.gamma * e.acceleration.y;
-			});
-			
+
+			function handleOrientation(e) {
+				gyroX += e.beta * 0.05;
+				gyroY += e.gamma * 0.05;
+			}
+
+
+			function gyroSensorPermission() {
+				if (typeof DeviceMotionEvent.requestPermission === 'function') {
+					// Handle iOS 13+ devices.
+					DeviceMotionEvent.requestPermission()
+					.then((state) => {
+						if (state !== 'granted') {
+						console.error('Request to access the orientation was rejected');
+						}
+					})
+			}}
+
 			const scene = new THREE.Scene();
 			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
@@ -90,6 +108,9 @@
 				requestAnimationFrame( animate );
 				camera.position.x += (mouseX - camera.position.x) * 0.05;
 				camera.position.y += (mouseY - camera.position.y) * 0.05;
+				camera.position.x += (gyroX - camera.position.x) * 0.05;
+				camera.position.y += (gyroY - camera.position.y) * 0.05;
+
 				camera.lookAt( scene.position );
 
 				internet_sphere.rotation.x += 0.01;

@@ -42,8 +42,9 @@
 			
 			window.addEventListener('deviceorientation', handleOrientation);
 
-			document.addEventListener("click", gyroSensorPermission);
-			document.addEventListener("mousemove", (e) => { 
+			document.addEventListener("click", gyroSensorPermission, { once : true });
+			document.addEventListener("mousemove", (e) => {
+
 				mouseX = e.clientX - window.innerWidth / 2;
 				mouseY = e.clientY - window.innerHeight / 2;
 			});

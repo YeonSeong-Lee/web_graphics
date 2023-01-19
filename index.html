@@ -90,24 +90,24 @@
     <div class="page" id="page5" onclick="tempGuide()">error pages</div>
 
     <script>
-    const circle = document.querySelector(".circle");
-    document.addEventListener("mousemove", (e) => {
-        const mouseX = e.clientX;
-        const mouseY = e.clientY;
-        circle.style.left = mouseX + 'px';
-        circle.style.top = mouseY + 'px';
-    })
-    const tempGuide = () => {
-        alert("page redirection is not yet implemented.")
-    }
-    const pagesNum = 5;
-    for (let i = 1; i <= pagesNum; i++) {
-        const tempPage = document.querySelector(`#page${i}`);
-        const tempX = (window.innerWidth * Math.random() * 0.8) + 'px';
-        const tempY =  window.innerHeight * Math.random() + 'px';
-        tempPage.style.left = tempX;
-        tempPage.style.top = tempY; 
-    }
+		const circle = document.querySelector(".circle");
+		document.addEventListener("mousemove", (e) => {
+			const mouseX = e.clientX;
+			const mouseY = e.clientY;
+			circle.style.left = mouseX + 'px';
+			circle.style.top = mouseY + 'px';
+		})
+		const tempGuide = () => {
+			alert("page redirection is not yet implemented.")
+		}
+		const pagesNum = 5;
+		for (let i = 1; i <= pagesNum; i++) {
+			const tempPage = document.querySelector(`#page${i}`);
+			const tempX = (window.innerWidth * Math.random() * 0.8) + 'px';
+			const tempY =  window.innerHeight * Math.random() + 'px';
+			tempPage.style.left = tempX;
+			tempPage.style.top = tempY; 
+		}
     </script>
 </body>
 

@@ -53,11 +53,12 @@
       const time = clock.getElapsedTime();
       const vector = new THREE.Vector3();
       vector.fromBufferAttribute(position, i);
+      const multipler = (vector.x + 2.4) / 4.2;
       const waveX1 = 0.42 * Math.sin(vector.x * 0.5 + time * 2);
       const waveX2 = 0.21 * Math.sin(vector.x * 2 + time * 3);
       const waveY1 = 0.1 * Math.sin(vector.y * 5 + time)
       const waveY2 = 0.01 * Math.sin(vector.y * 10 + time * 2)
-      vector.z = waveX2 + waveX2 + waveY1 + waveY2;
+      vector.z = (waveX2 + waveX2 + waveY1 + waveY2) * multipler;
       position.setXYZ(i, vector.x, vector.y, vector.z);
     }
     position.needsUpdate = true;

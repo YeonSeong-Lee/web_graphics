@@ -47,18 +47,13 @@
 
   //** functions **//
   function animate() {
-    console.log(flag.geometry.attributes.position.array);
-    const vector = new THREE.Vector3();
-
-    for (let i = 0, l = position.count; i < l; i++) {
-
-
+    const position = flag.geometry.attributes.position;
+    for (let i = 0; i < position.count; i++) {
+      const vector = new THREE.Vector3();
       vector.fromBufferAttribute(position, i);
-      vector.applyMatrix4(child.matrixWorld);
-      console.log(vector);
+      vector.z = 0.42 * Math.sin(vector.x);
+      position.setXYZ(i, vector.x, vector.y, vector.z);
     }
-
-    //flag.geometry.vertices.map(v => { v.z = 0.42 * Math.sin( v.x )})
     requestAnimationFrame(animate);
     camera.lookAt(scene.position);
     renderer.render(scene, camera);

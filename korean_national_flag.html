@@ -42,6 +42,7 @@
   flag.rotation.set(-0.1, 0, 0);
   camera.position.z = 3;
   scene.add(flag);
+  const clock = new THREE.Clock();
 
   animate();
 
@@ -49,13 +50,13 @@
   function animate() {
     const position = flag.geometry.attributes.position;
     for (let i = 0; i < position.count; i++) {
+      const time = clock.getElapsedTime();
       const vector = new THREE.Vector3();
       vector.fromBufferAttribute(position, i);
-      vector.z = 0.42 * Math.sin(vector.x);
+      vector.z = 0.42 * Math.sin(vector.x * 2 + time);
       position.setXYZ(i, vector.x, vector.y, vector.z);
     }
     requestAnimationFrame(animate);
-    camera.lookAt(scene.position);
     renderer.render(scene, camera);
   };
 </script>

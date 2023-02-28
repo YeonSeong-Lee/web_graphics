@@ -28,6 +28,8 @@
 <script type="module">
   import * as THREE from "three";
 
+  const loader = new THREE.Loader();
+
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   const renderer = new THREE.WebGLRenderer({
@@ -37,11 +39,12 @@
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
   const geometry = new THREE.PlaneGeometry(5, 3, 50, 30);
-  const material = new THREE.MeshBasicMaterial({ color: 0x424242, wireframe: true })
+  const material = new THREE.MeshBasicMaterial({ color: 0xFF4242, map: loader.load("assests/korean_national_flag.png") });
   const flag = new THREE.Mesh(geometry, material);
   flag.rotation.set(-0.1, 0, 0);
   camera.position.z = 3;
   scene.add(flag);
+
   const clock = new THREE.Clock();
 
   animate();

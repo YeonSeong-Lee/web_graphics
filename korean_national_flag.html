@@ -39,7 +39,7 @@
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
   const geometry = new THREE.PlaneGeometry(5, 3, 50, 30);
-  // @warning: loader can't load local file
+  // @warning: loader can't load local file, use web server
   const material = new THREE.MeshBasicMaterial({ map: loader.load("./assets/korean_national_flag.png") });
   const flag = new THREE.Mesh(geometry, material);
   flag.rotation.set(-0.1, 0, 0);

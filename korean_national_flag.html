@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
+  <style>
+    h1 { align-items: center;}
+  </style>
   <head>
     <title>태극기</title>
   </head>
   <body>
-	
+	<header>
+    <a href="https://ko.wikipedia.org/wiki/3%C2%B71%EC%A0%88">3월 1일</h1>
+  </header>
   </body>
   	<script type="importmap">
 		{
@@ -25,11 +30,11 @@
       });
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			document.body.appendChild( renderer.domElement );
-			const geometry = new THREE.SphereGeometry();
-      const material = new THREE.MeshBasicMaterial( { color: 0x424242 })
-      const cube = new THREE.Mesh( geometry, material);
+			const geometry = new THREE.PlaneGeometry(5, 3, 15, 9);
+      const material = new THREE.MeshBasicMaterial( { color: 0x424242, wireframe: true })
+      const flag = new THREE.Mesh( geometry, material);
 			camera.position.z = 3;
-			scene.add( cube );
+			scene.add( flag );
 			
 			animate();
 
